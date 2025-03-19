@@ -1,172 +1,129 @@
-import { useState } from "react";
 import { motion } from "framer-motion";
 import { SOCIAL_LINKS } from "@/lib/constants";
-import { z } from "zod";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { useToast } from "@/hooks/use-toast";
-
-const formSchema = z.object({
-  name: z.string().min(2, { message: "Name must be at least 2 characters" }),
-  email: z.string().email({ message: "Please enter a valid email address" }),
-  message: z.string().min(10, { message: "Message must be at least 10 characters" })
-});
-
-type FormValues = z.infer<typeof formSchema>;
 
 export default function Contact() {
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const { toast } = useToast();
-  
-  const form = useForm<FormValues>({
-    resolver: zodResolver(formSchema),
-    defaultValues: {
-      name: "",
-      email: "",
-      message: ""
-    }
-  });
-
-  function onSubmit(data: FormValues) {
-    setIsSubmitting(true);
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const formData = new FormData(e.currentTarget);
+    const data = {
+      name: formData.get('name'),
+      email: formData.get('email'),
+      message: formData.get('message')
+    };
     
-    // Simulate form submission
-    setTimeout(() => {
-      console.log("Form submitted:", data);
-      toast({
-        title: "Message sent!",
-        description: "Thank you for reaching out. I'll get back to you soon.",
-        duration: 5000
-      });
-      form.reset();
-      setIsSubmitting(false);
-    }, 1000);
-  }
+    // Open email client with pre-filled data
+    const mailtoLink = `mailto:dipeshbansal777@gmail.com?subject=Contact from ${data.name}&body=${encodeURIComponent(`Name: ${data.name}\nEmail: ${data.email}\n\nMessage:\n${data.message}`)}`;
+    window.location.href = mailtoLink;
+  };
 
   return (
-    <section id="contact" className="py-20 bg-[#121212]">
-      <div className="container mx-auto px-6">
-        <motion.div 
-          className="mb-12"
+    <section className="py-20 bg-gray-50">
+      <div className="container mx-auto px-4">
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
+          className="max-w-4xl mx-auto"
         >
-          <h2 className="text-3xl md:text-5xl font-space font-bold">
-            <span className="text-white">Get In Touch</span>
-            <span className="text-primary">_</span>
-          </h2>
-        </motion.div>
-        
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-16">
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-          >
-            <Form {...form}>
-              <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-                <FormField
-                  control={form.control}
-                  name="name"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel className="text-sm font-code text-gray-300">Name</FormLabel>
-                      <FormControl>
-                        <Input
-                          placeholder="Your name"
-                          className="w-full bg-[#1A1A1A] border border-primary rounded-md p-3 text-white focus:outline-none focus:ring-2 focus:ring-primary font-code"
-                          {...field}
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
+          <h2 className="text-4xl font-bold text-center mb-12">Get In Touch</h2>
+          
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16">
+            {/* Contact Form */}
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="bg-white p-8 rounded-lg shadow-lg"
+            >
+              <form onSubmit={handleSubmit} className="space-y-6">
+                <div>
+                  <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
+                    Name
+                  </label>
+                  <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    required
+                    className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  />
+                </div>
                 
-                <FormField
-                  control={form.control}
-                  name="email"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel className="text-sm font-code text-gray-300">Email</FormLabel>
-                      <FormControl>
-                        <Input
-                          placeholder="your@email.com"
-                          className="w-full bg-[#1A1A1A] border border-primary rounded-md p-3 text-white focus:outline-none focus:ring-2 focus:ring-primary font-code"
-                          {...field}
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
+                <div>
+                  <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
+                    Email
+                  </label>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    required
+                    className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  />
+                </div>
                 
-                <FormField
-                  control={form.control}
-                  name="message"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel className="text-sm font-code text-gray-300">Message</FormLabel>
-                      <FormControl>
-                        <Textarea
-                          placeholder="Your message here..."
-                          rows={5}
-                          className="w-full bg-[#1A1A1A] border border-primary rounded-md p-3 text-white focus:outline-none focus:ring-2 focus:ring-primary font-code"
-                          {...field}
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
+                <div>
+                  <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1">
+                    Message
+                  </label>
+                  <textarea
+                    id="message"
+                    name="message"
+                    rows={4}
+                    required
+                    className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  />
+                </div>
                 
-                <button 
-                  type="submit" 
-                  disabled={isSubmitting}
-                  className="neo-border rounded-md px-6 py-3 text-primary text-sm font-code hover:bg-primary hover:text-[#121212] transition duration-300 flex items-center"
+                <button
+                  type="submit"
+                  className="w-full bg-blue-600 text-white py-3 px-6 rounded-md hover:bg-blue-700 transition-colors duration-200"
                 >
-                  {isSubmitting ? "Sending..." : "Send Message"} <i className="fas fa-paper-plane ml-2"></i>
+                  Send Message
                 </button>
               </form>
-            </Form>
-          </motion.div>
-          
-          <motion.div 
-            className="flex flex-col justify-center"
-            initial={{ opacity: 0, x: 20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-          >
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
-              {SOCIAL_LINKS.map((social, index) => (
-                <motion.a 
-                  key={social.id}
-                  href={social.link} 
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="neo-border rounded-full h-24 sm:h-32 flex flex-col items-center justify-center hover:bg-primary hover:text-[#121212] transition duration-300 group"
-                  whileHover={{ scale: 1.05 }}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: 0.3 + (index * 0.1) }}
-                >
-                  <div className="text-primary group-hover:text-[#121212] text-xl sm:text-2xl mb-1 sm:mb-2">
-                    <i className={social.icon}></i>
-                  </div>
-                  <span className="font-code text-xs sm:text-sm">{social.name}</span>
-                </motion.a>
-              ))}
-            </div>
-          </motion.div>
-        </div>
+            </motion.div>
+            
+            {/* Contact Info */}
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.4 }}
+              className="space-y-8"
+            >
+              <div>
+                <h3 className="text-2xl font-semibold mb-4">Connect With Me</h3>
+                <p className="text-gray-600 mb-6">
+                  I'm always open to discussing new projects, creative ideas, or opportunities to be part of your visions.
+                </p>
+                
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  {SOCIAL_LINKS.map((link) => (
+                    <a
+                      key={link.name}
+                      href={link.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center justify-center p-4 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-200"
+                    >
+                      <span className="text-lg font-medium">{link.name}</span>
+                    </a>
+                  ))}
+                </div>
+              </div>
+              
+              <div>
+                <h3 className="text-2xl font-semibold mb-4">Location</h3>
+                <p className="text-gray-600">
+                  Mansa, Punjab, India
+                </p>
+              </div>
+            </motion.div>
+          </div>
+        </motion.div>
       </div>
     </section>
   );

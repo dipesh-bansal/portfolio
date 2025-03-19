@@ -1,33 +1,49 @@
 export const PROJECTS = [
   {
     id: 1,
-    title: "Netflix Clone",
-    description: "A static homepage replica of Netflix created using HTML and CSS. The project demonstrates my ability to recreate complex UI designs with precision and attention to detail.",
-    role: "FRONTEND DEVELOPER",
-    imageUrl: "/assets/p2.jpg",
+    title: "Algen.IO",
+    description: "Algen.io is an AI e-commerce platform that increase profits and accelerate the operation process swiftly using advanced data and high-performance algorithms.",
+    role: "FOUNDER AND CEO",
+    imageUrl: "https://images.unsplash.com/photo-1607799279861-4dd421887fb3?auto=format&fit=crop&w=800&q=80",
     link: "#"
   },
   {
     id: 2,
-    title: "Library Management System",
-    description: "A collaborative mini project for a virtual library where books can be sold online. The platform features user authentication, book catalog browsing, and a shopping cart system.",
-    role: "WEB DEVELOPER",
-    imageUrl: "/assets/p3.png",
+    title: "Netflix Clone",
+    description: "A full-stack Netflix clone with user authentication, movie browsing, and streaming capabilities. Built with React, Firebase, and The Movie Database API.",
+    role: "FULL-STACK DEVELOPER",
+    imageUrl: "/assets/projects/netflix-clone.jpg",
     link: "#"
   },
   {
     id: 3,
-    title: "Personal Portfolio Website",
-    description: "This website showcases my skills and projects with a modern design, interactive elements, and responsive layout. Created with HTML, CSS, and basic JavaScript.",
-    role: "FRONTEND DEVELOPER",
-    imageUrl: "https://images.unsplash.com/photo-1605379399642-870262d3d051?auto=format&fit=crop&w=800&q=80",
+    title: "Library Management System",
+    description: "A comprehensive library management solution for tracking books, managing borrowers, and handling reservations. Built with Java and MySQL database.",
+    role: "BACKEND DEVELOPER",
+    imageUrl: "/assets/projects/library-management.png",
     link: "#"
   },
   {
     id: 4,
-    title: "Python Training Projects",
-    description: "Various small applications and tools developed during my Python training at ThinkNext, Chandigarh. These projects demonstrate foundational programming concepts and problem-solving skills.",
-    role: "PYTHON DEVELOPER",
+    title: "FinTech Dashboard",
+    description: "A comprehensive financial analytics dashboard that helps users track investments, analyze market trends, and make data-driven decisions.",
+    role: "LEAD DEVELOPER",
+    imageUrl: "https://images.unsplash.com/photo-1556155092-490a1ba16284?auto=format&fit=crop&w=800&q=80",
+    link: "#"
+  },
+  {
+    id: 5,
+    title: "CodeMentor Platform",
+    description: "An educational platform connecting coding students with expert mentors through interactive lessons, real-time code reviews, and personalized learning paths.",
+    role: "TECHNICAL ARCHITECT",
+    imageUrl: "https://images.unsplash.com/photo-1605379399642-870262d3d051?auto=format&fit=crop&w=800&q=80",
+    link: "#"
+  },
+  {
+    id: 6,
+    title: "Smart Home IoT",
+    description: "A comprehensive IoT solution for smart homes that integrates various devices and provides an intuitive control interface with advanced automation capabilities.",
+    role: "IOT DEVELOPER",
     imageUrl: "https://images.unsplash.com/photo-1557426272-fc759fdf7a8d?auto=format&fit=crop&w=800&q=80",
     link: "#"
   }
@@ -108,29 +124,22 @@ export const PRESS = [
   }
 ];
 
+export const RESUME_URL = "https://drive.google.com/file/d/167_pXOmCqH9z_RbrB7_f1EryhhOQ_XV3/view?usp=sharing";
+
 export const SOCIAL_LINKS = [
   {
-    id: 1,
+    name: "GitHub",
+    url: "https://github.com/dipesh-bansal",
+    icon: "github"
+  },
+  {
     name: "LinkedIn",
-    icon: "fab fa-linkedin-in",
-    link: "https://www.linkedin.com/in/dipesh-bansal-678798265/"
+    url: "https://linkedin.com/in/dipesh-bansal",
+    icon: "linkedin"
   },
   {
-    id: 2,
-    name: "Phone",
-    icon: "fas fa-phone",
-    link: "tel:+917009323611"
-  },
-  {
-    id: 3,
-    name: "Mansa, Punjab",
-    icon: "fas fa-map-marker-alt",
-    link: "https://maps.google.com/?q=Mansa,Punjab,India"
-  },
-  {
-    id: 4,
-    name: "Email",
-    icon: "fas fa-envelope",
-    link: "mailto:dipeshbansal777@gmail.com"
+    name: "Twitter",
+    url: "https://twitter.com/dipeshbansal",
+    icon: "twitter"
   }
 ];
