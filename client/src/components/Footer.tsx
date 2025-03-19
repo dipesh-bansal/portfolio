@@ -12,7 +12,7 @@ export default function Footer() {
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
-            <span className="text-primary font-space font-bold text-2xl">AK</span>
+            <span className="text-primary font-space font-bold text-2xl">DB</span>
           </motion.div>
           
           <motion.div 
@@ -22,7 +22,7 @@ export default function Footer() {
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
-            <p className="text-gray-400 text-sm font-code">&copy; {new Date().getFullYear()} Andy Ta Hong. All rights reserved.</p>
+            <p className="text-gray-400 text-sm font-code">&copy; {new Date().getFullYear()} Dipesh Bansal. All rights reserved.</p>
           </motion.div>
           
           <motion.div

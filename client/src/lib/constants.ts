@@ -1,33 +1,33 @@
 export const PROJECTS = [
   {
     id: 1,
-    title: "Algen.IO",
-    description: "Algen.io is an AI e-commerce platform that increase profits and accelerate the operation process swiftly using advanced data and high-performance algorithms.",
-    role: "FOUNDER AND CEO",
+    title: "Netflix Clone",
+    description: "A static homepage replica of Netflix created using HTML and CSS. The project demonstrates my ability to recreate complex UI designs with precision and attention to detail.",
+    role: "FRONTEND DEVELOPER",
     imageUrl: "/assets/p2.webp",
     link: "#"
   },
   {
     id: 2,
-    title: "FinTech Dashboard",
-    description: "A comprehensive financial analytics dashboard that helps users track investments, analyze market trends, and make data-driven decisions.",
-    role: "LEAD DEVELOPER",
+    title: "Library Management System",
+    description: "A collaborative mini project for a virtual library where books can be sold online. The platform features user authentication, book catalog browsing, and a shopping cart system.",
+    role: "WEB DEVELOPER",
     imageUrl: "/assets/p3.webp",
     link: "#"
   },
   {
     id: 3,
-    title: "CodeMentor Platform",
-    description: "An educational platform connecting coding students with expert mentors through interactive lessons, real-time code reviews, and personalized learning paths.",
-    role: "TECHNICAL ARCHITECT",
+    title: "Personal Portfolio Website",
+    description: "This website showcases my skills and projects with a modern design, interactive elements, and responsive layout. Created with HTML, CSS, and basic JavaScript.",
+    role: "FRONTEND DEVELOPER",
     imageUrl: "https://images.unsplash.com/photo-1605379399642-870262d3d051?auto=format&fit=crop&w=800&q=80",
     link: "#"
   },
   {
     id: 4,
-    title: "Smart Home IoT",
-    description: "A comprehensive IoT solution for smart homes that integrates various devices and provides an intuitive control interface with advanced automation capabilities.",
-    role: "IOT DEVELOPER",
+    title: "Python Training Projects",
+    description: "Various small applications and tools developed during my Python training at ThinkNext, Chandigarh. These projects demonstrate foundational programming concepts and problem-solving skills.",
+    role: "PYTHON DEVELOPER",
     imageUrl: "https://images.unsplash.com/photo-1557426272-fc759fdf7a8d?auto=format&fit=crop&w=800&q=80",
     link: "#"
   }
@@ -119,20 +119,20 @@ export const SOCIAL_LINKS = [
   },
   {
     id: 2,
-    name: "Twitter",
-    icon: "fab fa-twitter",
-    link: "#"
+    name: "Phone",
+    icon: "fas fa-phone",
+    link: "tel:+917009323611"
   },
   {
     id: 3,
-    name: "Instagram",
-    icon: "fab fa-instagram",
+    name: "Location",
+    icon: "fas fa-map-marker-alt",
     link: "#"
   },
   {
     id: 4,
     name: "Email",
     icon: "fas fa-envelope",
-    link: "#"
+    link: "mailto:dipeshbansal777@gmail.com"
   }
 ];
