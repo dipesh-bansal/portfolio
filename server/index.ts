@@ -9,6 +9,16 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 const app = express();
+
+// Security middleware
+app.use((req, res, next) => {
+  res.setHeader('X-Content-Type-Options', 'nosniff');
+  res.setHeader('X-Frame-Options', 'DENY');
+  res.setHeader('X-XSS-Protection', '1; mode=block');
+  res.setHeader('Strict-Transport-Security', 'max-age=31536000; includeSubDomains');
+  next();
+});
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
@@ -73,23 +83,21 @@ app.use((req, res, next) => {
     throw err;
   });
 
-  // importantly only setup vite in development and after
-  // setting up all the other routes so the catch-all route
-  // doesn't interfere with the other routes
+  // Setup Vite in development, serve static in production
   if (app.get("env") === "development") {
     await setupVite(app, server);
   } else {
     serveStatic(app);
   }
 
-  // ALWAYS serve the app on port 9000
-  // this serves both the API and the client.
-  // It is the only port that is not firewalled.
-  const port = 9000;
+  // Get port from environment variable or use default
+  const port = process.env.PORT || 9000;
+  const host = process.env.HOST || "0.0.0.0"; // Listen on all interfaces in production
+
   server.listen({
     port,
-    host: "127.0.0.1",
+    host,
   }, () => {
-    log(`serving on port ${port}`);
+    log(`Server running on port ${port} in ${app.get("env")} mode`);
   });
 })();
