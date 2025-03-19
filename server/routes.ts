@@ -26,6 +26,13 @@ export async function registerRoutes(app: Express): Promise<Server> {
     });
   });
 
+  // API endpoint for resume download link
+  app.get("/api/resume", (_req, res) => {
+    return res.status(200).json({ 
+      resumeUrl: "https://drive.google.com/file/d/167_pXOmCqH9z_RbrB7_f1EryhhOQ_XV3/view?usp=sharing"
+    });
+  });
+
   // API endpoint to get portfolio projects
   app.get("/api/projects", (_req, res) => {
     // This would typically come from a database
@@ -40,6 +47,22 @@ export async function registerRoutes(app: Express): Promise<Server> {
       },
       {
         id: 2,
+        title: "Netflix Clone",
+        description: "A full-stack Netflix clone with user authentication, movie browsing, and streaming capabilities. Built with React, Firebase, and The Movie Database API.",
+        role: "FULL-STACK DEVELOPER",
+        imageUrl: "/assets/projects/netflix-clone.jpg",
+        link: "#"
+      },
+      {
+        id: 3,
+        title: "Library Management System",
+        description: "A comprehensive library management solution for tracking books, managing borrowers, and handling reservations. Built with Java and MySQL database.",
+        role: "BACKEND DEVELOPER",
+        imageUrl: "/assets/projects/library-management.png",
+        link: "#"
+      },
+      {
+        id: 4,
         title: "FinTech Dashboard",
         description: "A comprehensive financial analytics dashboard that helps users track investments, analyze market trends, and make data-driven decisions.",
         role: "LEAD DEVELOPER",
@@ -47,7 +70,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
         link: "#"
       },
       {
-        id: 3,
+        id: 5,
         title: "CodeMentor Platform",
         description: "An educational platform connecting coding students with expert mentors through interactive lessons, real-time code reviews, and personalized learning paths.",
         role: "TECHNICAL ARCHITECT",
@@ -55,7 +78,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
         link: "#"
       },
       {
-        id: 4,
+        id: 6,
         title: "Smart Home IoT",
         description: "A comprehensive IoT solution for smart homes that integrates various devices and provides an intuitive control interface with advanced automation capabilities.",
         role: "IOT DEVELOPER",

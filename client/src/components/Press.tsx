@@ -28,13 +28,13 @@ export default function Press() {
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
             >
-              <a href={item.link} className="block p-6 flex justify-between items-center group">
+              <a href={item.link} className="p-4 sm:p-6 flex flex-col sm:flex-row sm:justify-between items-start sm:items-center group">
                 <div>
-                  <h3 className="text-xl md:text-2xl font-space text-primary mb-1">{item.name}</h3>
-                  <span className="text-sm text-gray-400">{item.date}</span>
+                  <h3 className="text-lg sm:text-xl md:text-2xl font-space text-primary mb-1">{item.name}</h3>
+                  <span className="text-xs sm:text-sm text-gray-400">{item.date}</span>
                 </div>
                 <motion.div 
-                  className="text-primary"
+                  className="text-primary mt-2 sm:mt-0"
                   initial={{ x: 0 }}
                   whileHover={{ x: 5 }}
                   transition={{ duration: 0.2 }}

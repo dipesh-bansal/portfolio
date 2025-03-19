@@ -32,15 +32,13 @@ export default function VideoBackground({
           muted 
           loop 
           playsInline
-          className="absolute inset-0 object-cover w-full h-full"
-          style={{ filter: 'grayscale(0.2) brightness(0.6)' }}
+          className="absolute inset-0 object-cover w-full h-full grayscale-[0.2] brightness-[0.6]"
         >
           <source src={videoSrc} type="video/mp4" />
           Your browser does not support the video tag.
         </video>
         <div 
-          className="absolute inset-0 bg-[#121212]" 
-          style={{ opacity: overlayOpacity }}
+          className={`absolute inset-0 bg-[#121212] opacity-[${overlayOpacity}]`}
         />
       </motion.div>
     </div>

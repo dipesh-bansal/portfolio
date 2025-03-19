@@ -4,7 +4,7 @@ export const PROJECTS = [
     title: "Netflix Clone",
     description: "A static homepage replica of Netflix created using HTML and CSS. The project demonstrates my ability to recreate complex UI designs with precision and attention to detail.",
     role: "FRONTEND DEVELOPER",
-    imageUrl: "/assets/p2.webp",
+    imageUrl: "/assets/p2.jpg",
     link: "#"
   },
   {
@@ -12,7 +12,7 @@ export const PROJECTS = [
     title: "Library Management System",
     description: "A collaborative mini project for a virtual library where books can be sold online. The platform features user authentication, book catalog browsing, and a shopping cart system.",
     role: "WEB DEVELOPER",
-    imageUrl: "/assets/p3.webp",
+    imageUrl: "/assets/p3.png",
     link: "#"
   },
   {
@@ -113,7 +113,7 @@ export const SOCIAL_LINKS = [
     id: 1,
     name: "LinkedIn",
     icon: "fab fa-linkedin-in",
-    link: "#"
+    link: "https://www.linkedin.com/in/dipesh-bansal-678798265/"
   },
   {
     id: 2,

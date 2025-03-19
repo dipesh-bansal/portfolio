@@ -66,9 +66,9 @@ export default function ProjectSlider({ projects }: ProjectSliderProps) {
             {projects.map((project) => (
               <div
                 key={project.id}
-                className={`px-4 mb-8 ${isMobile ? "min-w-full" : "min-w-[calc(100%/2)]"}`}
+                className={`px-2 sm:px-4 mb-8 ${isMobile ? "min-w-full" : "min-w-[calc(100%/2)]"}`}
               >
-                <div className="neo-border rounded-2xl overflow-hidden bg-[#121212]">
+                <div className="neo-border rounded-2xl overflow-hidden bg-[#121212] h-full">
                   <div className="relative aspect-video overflow-hidden rounded-t-2xl">
                     <img
                       src={project.imageUrl}
@@ -76,16 +76,16 @@ export default function ProjectSlider({ projects }: ProjectSliderProps) {
                       className="w-full h-full object-cover"
                     />
                   </div>
-                  <div className="p-6">
-                    <h3 className="text-xl md:text-2xl font-space font-bold text-primary">{project.title}</h3>
-                    <p className="text-gray-300 my-3 text-sm">
+                  <div className="p-4 sm:p-6">
+                    <h3 className="text-lg md:text-xl lg:text-2xl font-space font-bold text-primary">{project.title}</h3>
+                    <p className="text-gray-300 my-2 sm:my-3 text-xs sm:text-sm">
                       {project.description}
                     </p>
-                    <div className="mt-4 flex justify-between items-center">
+                    <div className="mt-3 sm:mt-4 flex justify-between items-center">
                       <div>
                         <span className="text-xs font-bold text-primary">{project.role}</span>
                       </div>
-                      <a href={project.link} className="text-primary hover:underline text-sm flex items-center">
+                      <a href={project.link} className="text-primary hover:underline text-xs sm:text-sm flex items-center">
                         View Details <i className="fas fa-arrow-right ml-2"></i>
                       </a>
                     </div>
@@ -101,6 +101,7 @@ export default function ProjectSlider({ projects }: ProjectSliderProps) {
         <button
           onClick={prevSlide}
           disabled={currentSlide === 0}
+          aria-label="Previous project"
           className={`w-12 h-12 rounded-full flex items-center justify-center border border-primary text-primary hover:bg-primary hover:text-[#121212] transition duration-300 ${
             currentSlide === 0 ? "opacity-50 cursor-not-allowed" : ""
           }`}
@@ -118,6 +119,7 @@ export default function ProjectSlider({ projects }: ProjectSliderProps) {
         <button
           onClick={nextSlide}
           disabled={currentSlide === maxSlideIndex}
+          aria-label="Next project"
           className={`w-12 h-12 rounded-full flex items-center justify-center border border-primary text-primary hover:bg-primary hover:text-[#121212] transition duration-300 ${
             currentSlide === maxSlideIndex ? "opacity-50 cursor-not-allowed" : ""
           }`}

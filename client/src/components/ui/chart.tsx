@@ -3,6 +3,25 @@ import * as RechartsPrimitive from "recharts"
 
 import { cn } from "@/lib/utils"
 
+// Custom component to handle CSS variables without inline styles
+const StyledIndicator = React.forwardRef<
+  HTMLDivElement,
+  React.HTMLAttributes<HTMLDivElement> & {
+    indicatorColor: string;
+    className?: string;
+  }
+>(({ indicatorColor, className, ...props }, ref) => {
+  React.useLayoutEffect(() => {
+    if (ref && 'current' in ref && ref.current) {
+      ref.current.style.setProperty('--color-bg', indicatorColor);
+      ref.current.style.setProperty('--color-border', indicatorColor);
+    }
+  }, [indicatorColor, ref]);
+
+  return <div ref={ref} className={className} {...props} />;
+});
+StyledIndicator.displayName = "StyledIndicator";
+
 // Format: { THEME_NAME: CSS_SELECTOR }
 const THEMES = { light: "", dark: ".dark" } as const
 
@@ -204,7 +223,8 @@ const ChartTooltipContent = React.forwardRef<
                       <itemConfig.icon />
                     ) : (
                       !hideIndicator && (
-                        <div
+                        <StyledIndicator
+                          indicatorColor={indicatorColor}
                           className={cn(
                             "shrink-0 rounded-[2px] border-[--color-border] bg-[--color-bg]",
                             {
@@ -215,12 +235,6 @@ const ChartTooltipContent = React.forwardRef<
                               "my-0.5": nestLabel && indicator === "dashed",
                             }
                           )}
-                          style={
-                            {
-                              "--color-bg": indicatorColor,
-                              "--color-border": indicatorColor,
-                            } as React.CSSProperties
-                          }
                         />
                       )
                     )}
@@ -298,10 +312,10 @@ const ChartLegendContent = React.forwardRef<
                 <itemConfig.icon />
               ) : (
                 <div
-                  className="h-2 w-2 shrink-0 rounded-[2px]"
-                  style={{
-                    backgroundColor: item.color,
-                  }}
+                  className={cn(
+                    "h-2 w-2 shrink-0 rounded-[2px]",
+                    `bg-[${item.color}]`
+                  )}
                 />
               )}
               {itemConfig?.label}

@@ -26,19 +26,13 @@ export async function setupVite(app: Express, server: Server) {
   const serverOptions = {
     middlewareMode: true,
     hmr: { server },
-    allowedHosts: true,
+    allowedHosts: ["localhost"],
   };
 
   const vite = await createViteServer({
     ...viteConfig,
     configFile: false,
-    customLogger: {
-      ...viteLogger,
-      error: (msg, options) => {
-        viteLogger.error(msg, options);
-        process.exit(1);
-      },
-    },
+    customLogger: viteLogger,
     server: serverOptions,
     appType: "custom",
   });
@@ -72,6 +66,7 @@ export async function setupVite(app: Express, server: Server) {
 
 export function serveStatic(app: Express) {
   const distPath = path.resolve(__dirname, "public");
+  const publicPath = path.resolve(process.cwd(), "public");
 
   if (!fs.existsSync(distPath)) {
     throw new Error(
@@ -79,7 +74,11 @@ export function serveStatic(app: Express) {
     );
   }
 
+  // First serve files from the dist/public directory
   app.use(express.static(distPath));
+  
+  // Then also serve files from the public directory as fallback
+  app.use(express.static(publicPath));
 
   // fall through to index.html if the file doesn't exist
   app.use("*", (_req, res) => {

@@ -8,18 +8,19 @@ interface SkillBarProps {
 export default function SkillBar({ name, proficiency }: SkillBarProps) {
   return (
     <div>
-      <div className="flex justify-between mb-1">
-        <span className="text-sm font-code text-gray-300">{name}</span>
-        <span className="text-sm font-code text-primary">{proficiency}%</span>
+      <div className="flex justify-between mb-1 text-xs sm:text-sm">
+        <span>{name}</span>
+        <span className="text-primary">{proficiency}%</span>
       </div>
-      <div className="h-2 bg-[#242424] rounded-full overflow-hidden">
+      <div className="h-1.5 sm:h-2 bg-[#2A2A2A] rounded-full overflow-hidden">
         <motion.div 
           className="h-full bg-primary"
+          style={{ width: `${proficiency}%` }}
           initial={{ width: 0 }}
           whileInView={{ width: `${proficiency}%` }}
           viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: 0.1 }}
-        ></motion.div>
+          transition={{ duration: 0.5, delay: 0.2 }}
+        />
       </div>
     </div>
   );

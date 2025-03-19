@@ -1,0 +1,10 @@
+{
+  "name": "rest-express",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "cross-env NODE_ENV=production node dist/index.js"
+  },
+  "devDependencies": {
+    "cross-env": "^7.0.3"
+  }
+} 

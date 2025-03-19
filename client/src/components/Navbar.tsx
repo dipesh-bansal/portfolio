@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [resumeUrl, setResumeUrl] = useState("#");
 
   useEffect(() => {
     const handleScroll = () => {
@@ -18,6 +19,18 @@ export default function Navbar() {
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
+  }, []);
+
+  useEffect(() => {
+    // Fetch resume URL from API
+    fetch('/api/resume')
+      .then(response => response.json())
+      .then(data => {
+        if (data.resumeUrl) {
+          setResumeUrl(data.resumeUrl);
+        }
+      })
+      .catch(error => console.error('Error fetching resume URL:', error));
   }, []);
 
   return (
@@ -48,6 +61,14 @@ export default function Navbar() {
           </a>
           <a href="#contact" className="text-white hover:text-primary transition font-code text-sm">
             //05. <span className="text-white hover:text-primary">Contact</span>
+          </a>
+          <a 
+            href={resumeUrl} 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            className="neo-border rounded-md px-4 py-2 text-primary text-sm font-code hover:bg-primary hover:text-[#121212] transition duration-300 flex items-center"
+          >
+            Resume <i className="fas fa-download ml-2"></i>
           </a>
         </div>
         <div className="md:hidden flex items-center">
@@ -103,6 +124,15 @@ export default function Navbar() {
             onClick={() => setIsMenuOpen(false)}
           >
             //05. <span className="text-white hover:text-primary">Contact</span>
+          </a>
+          <a 
+            href={resumeUrl} 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            className="neo-border rounded-md px-4 py-2 text-primary text-sm font-code hover:bg-primary hover:text-[#121212] transition duration-300 flex items-center justify-center"
+            onClick={() => setIsMenuOpen(false)}
+          >
+            Resume <i className="fas fa-download ml-2"></i>
           </a>
         </div>
       </motion.div>

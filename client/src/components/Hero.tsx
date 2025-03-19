@@ -1,8 +1,23 @@
 import { motion } from "framer-motion";
 import CircularAnimation from "./CircularAnimation";
 import VideoBackground from "./VideoBackground";
+import { useState, useEffect } from "react";
 
 export default function Hero() {
+  const [resumeUrl, setResumeUrl] = useState("#");
+
+  useEffect(() => {
+    // Fetch resume URL from API
+    fetch('/api/resume')
+      .then(response => response.json())
+      .then(data => {
+        if (data.resumeUrl) {
+          setResumeUrl(data.resumeUrl);
+        }
+      })
+      .catch(error => console.error('Error fetching resume URL:', error));
+  }, []);
+
   return (
     <section id="home" className="pt-28 pb-20 min-h-screen flex flex-col justify-center relative overflow-hidden">
       {/* Video Background */}
@@ -72,8 +87,11 @@ export default function Hero() {
                 View Projects <i className="fas fa-arrow-right ml-2"></i>
               </a>
               <a 
-                href="#download" 
+                href={resumeUrl} 
+                target="_blank"
+                rel="noopener noreferrer"
                 className="rounded-full w-12 h-12 flex items-center justify-center neo-border text-primary hover:bg-primary hover:text-[#121212] transition duration-300"
+                title="Download Resume"
               >
                 <i className="fas fa-download"></i>
               </a>

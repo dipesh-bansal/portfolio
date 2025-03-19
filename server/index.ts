@@ -1,10 +1,32 @@
 import express, { type Request, Response, NextFunction } from "express";
 import { registerRoutes } from "./routes";
 import { setupVite, serveStatic, log } from "./vite";
+import path from "path";
+import { fileURLToPath } from "url";
+import { dirname } from "path";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+
+// Create Pub/Sub service
+app.set("pubsub", {
+  publish(channel: string, message: string) {
+    this.listeners[channel]?.forEach((listener: (message: string) => void) => {
+      listener(message);
+    });
+  },
+  subscribe(channel: string, listener: (message: string) => void) {
+    if (!this.listeners[channel]) {
+      this.listeners[channel] = [];
+    }
+    this.listeners[channel].push(listener);
+  },
+  listeners: {} as Record<string, ((message: string) => void)[]>,
+});
 
 app.use((req, res, next) => {
   const start = Date.now();
@@ -37,6 +59,10 @@ app.use((req, res, next) => {
 });
 
 (async () => {
+  // Serve all static files from the public directory
+  app.use(express.static(path.join(process.cwd(), 'public')));
+  
+  // Register API routes
   const server = await registerRoutes(app);
 
   app.use((err: any, _req: Request, res: Response, _next: NextFunction) => {
@@ -56,14 +82,13 @@ app.use((req, res, next) => {
     serveStatic(app);
   }
 
-  // ALWAYS serve the app on port 5000
+  // ALWAYS serve the app on port 9000
   // this serves both the API and the client.
   // It is the only port that is not firewalled.
-  const port = 5000;
+  const port = 9000;
   server.listen({
     port,
-    host: "0.0.0.0",
-    reusePort: true,
+    host: "127.0.0.1",
   }, () => {
     log(`serving on port ${port}`);
   });

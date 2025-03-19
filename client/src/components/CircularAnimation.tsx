@@ -55,7 +55,7 @@ export default function CircularAnimation() {
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.5 }}
         >
-          &lt;download CV/&gt;
+          &lt;download Resume/&gt;
         </motion.span>
       </div>
     </div>

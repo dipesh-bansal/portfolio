@@ -1,0 +1,11 @@
+.sidebar-wrapper {
+  --sidebar-width: 280px;
+  --sidebar-width-icon: 72px;
+  --sidebar-width-mobile: 280px;
+}
+
+.sidebar-content {
+  --sidebar-width: var(--sidebar-width-mobile);
+}
+
+/* Add any additional sidebar styles here */ 

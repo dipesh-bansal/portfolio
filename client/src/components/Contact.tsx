@@ -57,12 +57,12 @@ export default function Contact() {
           transition={{ duration: 0.5 }}
         >
           <h2 className="text-3xl md:text-5xl font-space font-bold">
-            <span className="text-white">Connect with me</span>
+            <span className="text-white">Get In Touch</span>
             <span className="text-primary">_</span>
           </h2>
         </motion.div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-16">
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -144,22 +144,24 @@ export default function Contact() {
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
-            <div className="grid grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
               {SOCIAL_LINKS.map((social, index) => (
                 <motion.a 
                   key={social.id}
                   href={social.link} 
-                  className="neo-border rounded-full h-32 flex flex-col items-center justify-center hover:bg-primary hover:text-[#121212] transition duration-300 group"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="neo-border rounded-full h-24 sm:h-32 flex flex-col items-center justify-center hover:bg-primary hover:text-[#121212] transition duration-300 group"
                   whileHover={{ scale: 1.05 }}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: 0.3 + (index * 0.1) }}
                 >
-                  <div className="text-primary group-hover:text-[#121212] text-2xl mb-2">
+                  <div className="text-primary group-hover:text-[#121212] text-xl sm:text-2xl mb-1 sm:mb-2">
                     <i className={social.icon}></i>
                   </div>
-                  <span className="font-code text-sm">{social.name}</span>
+                  <span className="font-code text-xs sm:text-sm">{social.name}</span>
                 </motion.a>
               ))}
             </div>
