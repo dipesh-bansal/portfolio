@@ -4,7 +4,7 @@ export const PROJECTS = [
     title: "Algen.IO",
     description: "Algen.io is an AI e-commerce platform that increase profits and accelerate the operation process swiftly using advanced data and high-performance algorithms.",
     role: "FOUNDER AND CEO",
-    imageUrl: "https://images.unsplash.com/photo-1607799279861-4dd421887fb3?auto=format&fit=crop&w=800&q=80",
+    imageUrl: "/assets/p2.webp",
     link: "#"
   },
   {
@@ -12,7 +12,7 @@ export const PROJECTS = [
     title: "FinTech Dashboard",
     description: "A comprehensive financial analytics dashboard that helps users track investments, analyze market trends, and make data-driven decisions.",
     role: "LEAD DEVELOPER",
-    imageUrl: "https://images.unsplash.com/photo-1556155092-490a1ba16284?auto=format&fit=crop&w=800&q=80",
+    imageUrl: "/assets/p3.webp",
     link: "#"
   },
   {
