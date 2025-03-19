@@ -31,7 +31,7 @@ export default function Navbar() {
     >
       <div className="container mx-auto px-6 py-3 flex justify-between items-center">
         <div className="flex items-center">
-          <span className="text-primary font-space font-bold text-2xl">AK</span>
+          <span className="text-primary font-space font-bold text-2xl">DB</span>
         </div>
         <div className="hidden md:flex items-center space-x-8">
           <a href="#home" className="text-white hover:text-primary transition font-code text-sm">

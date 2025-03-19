@@ -13,7 +13,7 @@ export default function Press() {
           transition={{ duration: 0.5 }}
         >
           <h2 className="text-3xl md:text-5xl font-space font-bold">
-            <span className="text-white">My Press</span>
+            <span className="text-white">Education</span>
             <span className="text-primary">_</span>
           </h2>
         </motion.div>

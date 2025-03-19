@@ -86,26 +86,32 @@ export const SKILLS = [
 export const PRESS = [
   {
     id: 1,
-    name: "California Herald",
-    date: "June 23, 2023",
+    name: "B.Tech in Computer Science & Engineering",
+    date: "2020-2024",
     link: "#"
   },
   {
     id: 2,
-    name: "Yahoo! Finance",
-    date: "May 15, 2023",
+    name: "Maharaja Ranjit Singh Punjab Technical University",
+    date: "Giani Zail Singh Campus College of Engineering and Technology, Bathinda",
     link: "#"
   },
   {
     id: 3,
-    name: "Medium",
-    date: "April 7, 2023",
+    name: "Higher Secondary Education",
+    date: "2018-2020 | Manu Vatika Day Boarding Senior Secondary School, Budhlada",
     link: "#"
   },
   {
     id: 4,
-    name: "Thrive Global",
-    date: "January 29, 2023",
+    name: "Primary & Secondary Education",
+    date: "2007-2017 | S. Chetan Singh Sarvhitkari Sr. Sec. Vidya Mandir, Mansa",
+    link: "#"
+  },
+  {
+    id: 5,
+    name: "Python Training",
+    date: "July-August 2023 | ThinkNext, Chandigarh",
     link: "#"
   }
 ];
@@ -125,9 +131,9 @@ export const SOCIAL_LINKS = [
   },
   {
     id: 3,
-    name: "Location",
+    name: "Mansa, Punjab",
     icon: "fas fa-map-marker-alt",
-    link: "#"
+    link: "https://maps.google.com/?q=Mansa,Punjab,India"
   },
   {
     id: 4,
