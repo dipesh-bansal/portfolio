@@ -35,63 +35,50 @@ export const PROJECTS = [
 
 export const SKILLS = [
   {
-    category: "Frontend Development",
+    category: "Programming Languages",
     icon: "fas fa-code",
     skills: [
-      { name: "React", proficiency: 90 },
-      { name: "JavaScript", proficiency: 95 },
-      { name: "TypeScript", proficiency: 85 },
-      { name: "CSS/SASS", proficiency: 80 }
+      { name: "HTML", proficiency: 70 },
+      { name: "CSS", proficiency: 70 },
+      { name: "JavaScript", proficiency: 50 },
+      { name: "Python", proficiency: 50 }
     ]
   },
   {
-    category: "Backend Development",
-    icon: "fas fa-server",
+    category: "Programming Foundations",
+    icon: "fas fa-laptop-code",
     skills: [
-      { name: "Node.js", proficiency: 85 },
-      { name: "Python", proficiency: 80 },
-      { name: "GraphQL", proficiency: 75 },
-      { name: "MongoDB", proficiency: 90 }
+      { name: "C", proficiency: 65 },
+      { name: "C++", proficiency: 65 },
+      { name: "Problem Solving", proficiency: 75 },
+      { name: "Design Integration", proficiency: 70 }
     ]
   },
   {
-    category: "AI & Machine Learning",
-    icon: "fas fa-brain",
+    category: "Soft Skills",
+    icon: "fas fa-users",
     skills: [
-      { name: "TensorFlow", proficiency: 75 },
-      { name: "PyTorch", proficiency: 70 },
-      { name: "NLP", proficiency: 80 },
-      { name: "Computer Vision", proficiency: 65 }
+      { name: "Problem Solving", proficiency: 80 },
+      { name: "Adaptability", proficiency: 85 },
+      { name: "Teamwork", proficiency: 80 },
+      { name: "Technical Solutions", proficiency: 75 }
     ]
   },
   {
-    category: "Cloud & DevOps",
-    icon: "fas fa-cloud",
+    category: "Languages",
+    icon: "fas fa-language",
     skills: [
-      { name: "AWS", proficiency: 85 },
-      { name: "Docker", proficiency: 90 },
-      { name: "Kubernetes", proficiency: 75 },
-      { name: "CI/CD", proficiency: 80 }
+      { name: "English", proficiency: 90 },
+      { name: "Hindi", proficiency: 75 },
+      { name: "Punjabi", proficiency: 75 }
     ]
   },
   {
-    category: "Mobile Development",
-    icon: "fas fa-mobile-alt",
+    category: "Education",
+    icon: "fas fa-graduation-cap",
     skills: [
-      { name: "React Native", proficiency: 85 },
-      { name: "Flutter", proficiency: 70 },
-      { name: "iOS (Swift)", proficiency: 60 },
-      { name: "Android", proficiency: 65 }
-    ]
-  },
-  {
-    category: "Project Management",
-    icon: "fas fa-project-diagram",
-    skills: [
-      { name: "Agile/Scrum", proficiency: 95 },
-      { name: "JIRA", proficiency: 90 },
-      { name: "Product Strategy", proficiency: 85 },
-      { name: "Team Leadership", proficiency: 90 }
+      { name: "B.Tech in Computer Science", proficiency: 70 },
+      { name: "Python Training", proficiency: 65 }
     ]
   }
 ];

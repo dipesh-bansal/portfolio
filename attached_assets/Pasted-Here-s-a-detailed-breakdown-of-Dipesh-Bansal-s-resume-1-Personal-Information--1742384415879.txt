@@ -1,0 +1,100 @@
+Here's a detailed breakdown of Dipesh Bansal's resume:
+
+---
+
+### **1. Personal Information**
+- **Name:** Dipesh Bansal  
+- **Profession:** Web Developer  
+- **Location:** Bhagat Singh Chowk Street, Mansa, Punjab  
+- **Email:** dipeshbansal777@gmail.com  
+- **Phone:** +91 7009323611  
+- **LinkedIn:** (Not provided, just mentioned as "Dipesh Bansal")  
+
+---
+
+### **2. Profile Summary**
+- Experienced **web developer** with expertise in **design integration** and problem-solving.  
+- Fluent in **C, C++, Python, and JavaScript**.  
+- Passionate about bridging business needs with **technical solutions**.  
+- Aspiring to secure an **entry-level software engineering role** in a prestigious tech-driven organization.  
+
+---
+
+### **3. Training**
+#### **Python Training at ThinkNext, Chandigarh (July-August 2023)**
+- The listed topics seem unrelated to Python, possibly an error or placeholder text:
+  - **"Covert intelligence operations for national security."**  
+  - **"Infiltration from high-risk environments."**  
+  - **"Utilization of advanced espionage techniques and gadgets."**  
+  - **"Surveillance, analysis, and threat prevention."**  
+
+*(These topics are not related to Python development and might need correction.)*
+
+---
+
+### **4. Education**
+#### **B.Tech in Computer Science & Engineering (2020-2024)**
+- **University:** Maharaja Ranjit Singh Punjab Technical University  
+- **Campus:** Giani Zail Singh Campus College of Engineering and Technology, Bathinda  
+- **CGPA:** 7  
+
+#### **Higher Secondary (2018-2020)**
+- **School:** Manu Vatika Day Boarding Senior Secondary School, Budhlada, Punjab  
+- **CGPA:** 7  
+
+#### **Primary & Secondary Education (2007-2017)**
+- **School:** S. Chetan Singh Sarvhitkari Sr. Sec. Vidya Mandir, Mansa, Punjab  
+
+---
+
+### **5. Projects**
+1. **Netflix Clone**  
+   - A **static homepage replica** of Netflix using **HTML and CSS**.  
+   
+2. **Library Management Mini Project**  
+   - A **collaborative project** for a **virtual library** where books can be sold online.  
+
+---
+
+### **6. Skills**
+- **Soft Skills:**  
+  - Problem Solving  
+  - Adaptability  
+  - Teamwork  
+
+- **Programming Languages:**  
+  - **HTML:** Intermediate  
+  - **CSS:** Intermediate  
+  - **Python:** Basic  
+  - **JavaScript:** Basic  
+
+- **Languages Spoken:**  
+  - **English:** Fluent  
+  - **Hindi:** Intermediate  
+  - **Punjabi:** Intermediate  
+
+---
+
+### **7. Declaration**
+- He **declares that the information is true** and understands that false statements may lead to disqualification from employment or internships.  
+
+---
+
+### **Observations & Suggestions**
+1. **Profile Summary:**  
+   - It’s well-written, but adding **specific projects** or **technologies** (like "Web development using React.js, Django, etc.") would make it stronger.  
+
+2. **Training Section Issues:**  
+   - The listed topics under Python training **do not relate to Python** (mentions espionage, intelligence operations).  
+   - Needs correction or proper content related to **Python development topics** (like Django, Flask, Data Science, etc.).  
+
+3. **Projects:**  
+   - More details on technologies used (e.g., **"Library project built with Django and React"**) would improve clarity.  
+
+4. **Skills Section:**  
+   - HTML & CSS are **Intermediate**, but **Python and JavaScript are Basic**—this could be expanded with more learning.  
+
+---
+
+### **Final Thoughts**
+Overall, Dipesh Bansal has **a solid foundation in web development**, but some parts of the resume need minor corrections, especially in the **training section**. If you need **help editing or improving the resume**, let me know! 🚀

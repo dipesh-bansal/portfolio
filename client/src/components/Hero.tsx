@@ -38,7 +38,7 @@ export default function Hero() {
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ delay: 0.6 }}
               >
-                Andy Ta
+                Dipesh
               </motion.span>
               <motion.span 
                 className="block text-white"
@@ -46,7 +46,7 @@ export default function Hero() {
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ delay: 0.8 }}
               >
-                Hong
+                Bansal
               </motion.span>
             </motion.h1>
             
@@ -56,7 +56,7 @@ export default function Hero() {
               animate={{ opacity: 1 }}
               transition={{ delay: 1 }}
             >
-              <span className="text-primary font-code text-sm">&lt;p&gt;Entrepreneur and developer&lt;/p&gt;</span>
+              <span className="text-primary font-code text-sm">&lt;p&gt;Web Developer&lt;/p&gt;</span>
             </motion.div>
             
             <motion.div 
