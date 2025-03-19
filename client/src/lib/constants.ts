@@ -72,14 +72,6 @@ export const SKILLS = [
       { name: "Hindi", proficiency: 75 },
       { name: "Punjabi", proficiency: 75 }
     ]
-  },
-  {
-    category: "Education",
-    icon: "fas fa-graduation-cap",
-    skills: [
-      { name: "B.Tech in Computer Science", proficiency: 70 },
-      { name: "Python Training", proficiency: 65 }
-    ]
   }
 ];
 
