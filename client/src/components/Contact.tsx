@@ -23,8 +23,10 @@ export default function Contact() {
   const { toast } = useToast();
   
   useEffect(() => {
-    // Initialize EmailJS
-    emailjs.init(import.meta.env.VITE_EMAILJS_PUBLIC_KEY);
+    // Initialize EmailJS with the new v4 method
+    emailjs.init({
+      publicKey: import.meta.env.VITE_EMAILJS_PUBLIC_KEY,
+    });
   }, []);
 
   const form = useForm<FormValues>({
@@ -45,7 +47,9 @@ export default function Contact() {
         from_name: data.name,
         from_email: data.email,
         message: data.message,
-        reply_to: data.email
+        reply_to: data.email,
+        title: "Portfolio Contact Form", // Added subject/title
+        time: new Date().toLocaleString() // Added timestamp
       };
 
       const result = await emailjs.send(

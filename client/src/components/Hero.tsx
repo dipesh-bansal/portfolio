@@ -1,14 +1,10 @@
 import { motion } from "framer-motion";
 import CircularAnimation from "./CircularAnimation";
-import VideoBackground from "./VideoBackground";
 import { RESUME_URL } from "@/lib/constants";
 
 export default function Hero() {
   return (
-    <section id="home" className="pt-28 pb-20 min-h-screen flex flex-col justify-center relative overflow-hidden">
-      {/* Video Background */}
-      <VideoBackground videoSrc="/assets/p.mp4" overlayOpacity={0.75} />
-      
+    <section id="home" className="pt-28 pb-20 min-h-screen flex flex-col justify-center relative overflow-hidden bg-gradient-to-b from-[#121212] via-[#121212] to-[#121212]">
       {/* Content */}
       <div className="container mx-auto px-6 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
