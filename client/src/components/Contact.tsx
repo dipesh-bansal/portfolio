@@ -175,6 +175,19 @@ export default function Contact() {
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
+            <motion.div
+              className="neo-border rounded-full h-32 flex flex-col items-center justify-center mb-6 hover:bg-primary hover:text-[#121212] transition duration-300 group"
+              whileHover={{ scale: 1.05 }}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+            >
+              <div className="text-primary group-hover:text-[#121212] text-2xl mb-2">
+                <i className="fas fa-phone"></i>
+              </div>
+              <span className="font-code text-sm">+91 7009323611</span>
+            </motion.div>
             <div className="grid grid-cols-2 gap-6">
               {SOCIAL_LINKS.map((social, index) => (
                 <motion.a 
