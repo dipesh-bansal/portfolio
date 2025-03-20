@@ -23,38 +23,45 @@ export default function Contact() {
   const { toast } = useToast();
   
   useEffect(() => {
-    // Initialize EmailJS with the new v4 method
+    // Initialize EmailJS
+    const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+    if (!publicKey) {
+      console.error('EmailJS public key is not configured');
+      return;
+    }
+    
     emailjs.init({
-      publicKey: import.meta.env.VITE_EMAILJS_PUBLIC_KEY,
+      publicKey,
+      limitRate: {
+        throttle: 5000, // 5 seconds
+      },
     });
   }, []);
-
-  const form = useForm<FormValues>({
-    resolver: zodResolver(formSchema),
-    defaultValues: {
-      name: "",
-      email: "",
-      message: ""
-    }
-  });
 
   const onSubmit = async (data: FormValues) => {
     setIsSubmitting(true);
     
     try {
+      const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+      const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+      
+      if (!serviceId || !templateId) {
+        throw new Error('EmailJS configuration is incomplete');
+      }
+
       const templateParams = {
         to_name: "Dipesh",
         from_name: data.name,
         from_email: data.email,
         message: data.message,
         reply_to: data.email,
-        title: "Portfolio Contact Form", // Added subject/title
-        time: new Date().toLocaleString() // Added timestamp
+        title: "Portfolio Contact Form",
+        time: new Date().toLocaleString()
       };
 
       const result = await emailjs.send(
-        import.meta.env.VITE_EMAILJS_SERVICE_ID,
-        import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+        serviceId,
+        templateId,
         templateParams
       );
 
@@ -72,7 +79,7 @@ export default function Contact() {
       console.error('Error sending email:', error);
       toast({
         title: "Error",
-        description: "Failed to send message. Please try again later.",
+        description: error instanceof Error ? error.message : "Failed to send message. Please try again later.",
         variant: "destructive",
         duration: 5000
       });
@@ -80,6 +87,15 @@ export default function Contact() {
       setIsSubmitting(false);
     }
   };
+
+  const form = useForm<FormValues>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      name: "",
+      email: "",
+      message: ""
+    }
+  });
 
   return (
     <section id="contact" className="py-20 bg-[#121212]">
@@ -172,60 +188,43 @@ export default function Contact() {
             </Form>
           </motion.div>
           
-          <motion.div 
-            className="flex flex-col justify-center"
+          <motion.div
             initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.2 }}
+            transition={{ duration: 0.5 }}
+            className="space-y-8"
           >
-            <motion.a
-              href="mailto:dipeshbansal777@gmail.com"
-              className="neo-border rounded-full h-32 flex flex-col items-center justify-center mb-6 hover:bg-primary hover:text-[#121212] transition duration-300 group"
-              whileHover={{ scale: 1.05 }}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.3 }}
-            >
-              <div className="text-primary group-hover:text-[#121212] text-2xl mb-2">
-                <i className="fas fa-envelope"></i>
+            <div>
+              <h3 className="text-xl font-space font-bold text-white mb-4">Contact Information</h3>
+              <div className="space-y-4">
+                <a href="mailto:dipeshbansal533@gmail.com" className="flex items-center space-x-3 text-gray-400 hover:text-primary transition">
+                  <i className="fas fa-envelope"></i>
+                  <span className="font-code">dipeshbansal533@gmail.com</span>
+                </a>
+                <a href="tel:+919027372927" className="flex items-center space-x-3 text-gray-400 hover:text-primary transition">
+                  <i className="fas fa-phone"></i>
+                  <span className="font-code">+91 9027372927</span>
+                </a>
               </div>
-              <span className="font-code text-sm">dipeshbansal777@gmail.com</span>
-            </motion.a>
-            <motion.div
-              className="neo-border rounded-full h-32 flex flex-col items-center justify-center mb-6 hover:bg-primary hover:text-[#121212] transition duration-300 group"
-              whileHover={{ scale: 1.05 }}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.3 }}
-            >
-              <div className="text-primary group-hover:text-[#121212] text-2xl mb-2">
-                <i className="fas fa-phone"></i>
+            </div>
+            
+            <div>
+              <h3 className="text-xl font-space font-bold text-white mb-4">Social Links</h3>
+              <div className="flex space-x-4">
+                {SOCIAL_LINKS.map((link) => (
+                  <a
+                    key={link.name}
+                    href={link.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-10 h-10 rounded-full flex items-center justify-center neo-border text-primary hover:bg-primary hover:text-[#121212] transition duration-300"
+                    title={link.name}
+                  >
+                    <i className={link.icon}></i>
+                  </a>
+                ))}
               </div>
-              <span className="font-code text-sm">+91 7009323611</span>
-            </motion.div>
-            <div className="grid grid-cols-2 gap-6">
-              {SOCIAL_LINKS.map((social, index) => (
-                <motion.a 
-                  key={social.name}
-                  href={social.url} 
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="neo-border rounded-full h-32 flex flex-col items-center justify-center hover:bg-primary hover:text-[#121212] transition duration-300 group"
-                  whileHover={{ scale: 1.05 }}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: 0.3 + (index * 0.1) }}
-                >
-                  <div className="text-primary group-hover:text-[#121212] text-2xl mb-2">
-                    <i className={`fab fa-${social.icon}`}></i>
-                  </div>
-                  <span className="font-code text-sm">{social.name}</span>
-                </motion.a>
-              ))}
             </div>
           </motion.div>
         </div>
