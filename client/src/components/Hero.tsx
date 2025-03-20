@@ -7,7 +7,7 @@ export default function Hero() {
   return (
     <section id="home" className="pt-28 pb-20 min-h-screen flex flex-col justify-center relative overflow-hidden">
       {/* Video Background */}
-      <VideoBackground videoSrc="/assets/p1.mp4" overlayOpacity={0.75} />
+      <VideoBackground videoSrc="/assets/p.mp4" overlayOpacity={0.75} />
       
       {/* Content */}
       <div className="container mx-auto px-6 relative z-10">
