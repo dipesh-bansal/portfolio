@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
+import { RESUME_URL } from "@/lib/constants";
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [resumeUrl, setResumeUrl] = useState("#");
 
   useEffect(() => {
     const handleScroll = () => {
@@ -19,18 +19,6 @@ export default function Navbar() {
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, []);
-
-  useEffect(() => {
-    // Fetch resume URL from API
-    fetch('/api/resume')
-      .then(response => response.json())
-      .then(data => {
-        if (data.resumeUrl) {
-          setResumeUrl(data.resumeUrl);
-        }
-      })
-      .catch(error => console.error('Error fetching resume URL:', error));
   }, []);
 
   return (
@@ -63,7 +51,7 @@ export default function Navbar() {
             //05. <span className="text-white hover:text-primary">Contact</span>
           </a>
           <a 
-            href={resumeUrl} 
+            href={RESUME_URL} 
             target="_blank" 
             rel="noopener noreferrer" 
             className="neo-border rounded-md px-4 py-2 text-primary text-sm font-code hover:bg-primary hover:text-[#121212] transition duration-300 flex items-center"
@@ -71,23 +59,23 @@ export default function Navbar() {
             Resume <i className="fas fa-download ml-2"></i>
           </a>
         </div>
-        <div className="md:hidden flex items-center">
-          <button
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="text-primary focus:outline-none"
-            aria-label="Toggle menu"
-          >
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16"></path>
-            </svg>
-          </button>
-        </div>
+        
+        {/* Mobile menu button */}
+        <button
+          className="md:hidden text-white focus:outline-none"
+          onClick={() => setIsMenuOpen(!isMenuOpen)}
+          aria-label="Toggle navigation menu"
+        >
+          <i className={`fas ${isMenuOpen ? 'fa-times' : 'fa-bars'} text-xl`}></i>
+        </button>
       </div>
+
+      {/* Mobile menu */}
       <motion.div
-        initial={false}
-        animate={isMenuOpen ? { height: "auto", opacity: 1 } : { height: 0, opacity: 0 }}
+        className={`md:hidden ${isMenuOpen ? 'block' : 'hidden'} bg-[#121212] border-t border-primary`}
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: isMenuOpen ? 1 : 0, y: isMenuOpen ? 0 : -20 }}
         transition={{ duration: 0.3 }}
-        className={`md:hidden bg-[#1A1A1A] overflow-hidden`}
       >
         <div className="container mx-auto px-6 py-3 flex flex-col space-y-4">
           <a 
@@ -126,7 +114,7 @@ export default function Navbar() {
             //05. <span className="text-white hover:text-primary">Contact</span>
           </a>
           <a 
-            href={resumeUrl} 
+            href={RESUME_URL} 
             target="_blank" 
             rel="noopener noreferrer" 
             className="neo-border rounded-md px-4 py-2 text-primary text-sm font-code hover:bg-primary hover:text-[#121212] transition duration-300 flex items-center justify-center"

@@ -1,23 +1,9 @@
 import { motion } from "framer-motion";
 import CircularAnimation from "./CircularAnimation";
 import VideoBackground from "./VideoBackground";
-import { useState, useEffect } from "react";
+import { RESUME_URL } from "@/lib/constants";
 
 export default function Hero() {
-  const [resumeUrl, setResumeUrl] = useState("#");
-
-  useEffect(() => {
-    // Fetch resume URL from API
-    fetch('/api/resume')
-      .then(response => response.json())
-      .then(data => {
-        if (data.resumeUrl) {
-          setResumeUrl(data.resumeUrl);
-        }
-      })
-      .catch(error => console.error('Error fetching resume URL:', error));
-  }, []);
-
   return (
     <section id="home" className="pt-28 pb-20 min-h-screen flex flex-col justify-center relative overflow-hidden">
       {/* Video Background */}
@@ -25,54 +11,30 @@ export default function Hero() {
       
       {/* Content */}
       <div className="container mx-auto px-6 relative z-10">
-        <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-10 items-center">
-          <motion.div 
-            initial={{ opacity: 0, x: -50 }}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
-            className="space-y-8"
           >
-            <motion.div 
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 0.8 }}
-              transition={{ delay: 0.3 }}
-              className="inline-block neo-border rounded-md px-3 py-1"
-            >
-              <span className="text-primary font-code text-sm">&lt;p&gt;This is&lt;/p&gt;</span>
-            </motion.div>
-            
             <motion.h1 
-              className="text-5xl md:text-7xl font-space font-bold"
+              className="text-4xl md:text-6xl font-space font-bold mb-4"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ delay: 0.5 }}
+              transition={{ delay: 0.2 }}
             >
-              <motion.span 
-                className="block text-white"
-                initial={{ y: 20, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ delay: 0.6 }}
-              >
-                Dipesh
-              </motion.span>
-              <motion.span 
-                className="block text-white"
-                initial={{ y: 20, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ delay: 0.8 }}
-              >
-                Bansal
-              </motion.span>
+              <span className="text-white">Hi, I'm </span>
+              <span className="text-primary">Dipesh</span>
             </motion.h1>
             
-            <motion.div 
-              className="py-3"
+            <motion.p 
+              className="text-gray-400 text-lg md:text-xl mb-6 font-code"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ delay: 1 }}
+              transition={{ delay: 0.4 }}
             >
-              <span className="text-primary font-code text-sm">&lt;p&gt;Web Developer&lt;/p&gt;</span>
-            </motion.div>
+              A passionate web developer focused on creating beautiful and user-friendly applications
+            </motion.p>
             
             <motion.div 
               className="flex items-center space-x-4 pt-6"
@@ -87,7 +49,7 @@ export default function Hero() {
                 View Projects <i className="fas fa-arrow-right ml-2"></i>
               </a>
               <a 
-                href={resumeUrl} 
+                href={RESUME_URL} 
                 target="_blank"
                 rel="noopener noreferrer"
                 className="rounded-full w-12 h-12 flex items-center justify-center neo-border text-primary hover:bg-primary hover:text-[#121212] transition duration-300"
