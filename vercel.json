@@ -26,17 +26,27 @@
       }
     },
     {
+      "src": "/favicon.svg",
+      "dest": "/favicon.svg",
+      "headers": {
+        "cache-control": "public, max-age=31536000, immutable",
+        "content-type": "image/svg+xml"
+      }
+    },
+    {
       "src": "/favicon.png",
       "dest": "/favicon.png",
       "headers": {
-        "cache-control": "public, max-age=31536000, immutable"
+        "cache-control": "public, max-age=31536000, immutable",
+        "content-type": "image/png"
       }
     },
     {
       "src": "/apple-touch-icon.png",
       "dest": "/apple-touch-icon.png",
       "headers": {
-        "cache-control": "public, max-age=31536000, immutable"
+        "cache-control": "public, max-age=31536000, immutable",
+        "content-type": "image/png"
       }
     },
     {
