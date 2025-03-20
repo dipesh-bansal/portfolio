@@ -46,8 +46,8 @@ export default function Contact() {
     try {
       const formData = form.getValues();
       const result = await emailjs.send(
-        'service_7n8a7ff',
-        'template_u6dvc08',
+        "service_7n8a7ff",
+        "template_u6dvc08",
         {
           from_name: formData.name,
           from_email: formData.email,
@@ -190,6 +190,20 @@ export default function Contact() {
                 <i className="fas fa-file-alt"></i>
               </div>
               <span className="font-code text-sm">Resume</span>
+            </motion.a>
+            <motion.a
+              href="mailto:dipeshbansal777@gmail.com"
+              className="neo-border rounded-full h-32 flex flex-col items-center justify-center mb-6 hover:bg-primary hover:text-[#121212] transition duration-300 group"
+              whileHover={{ scale: 1.05 }}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+            >
+              <div className="text-primary group-hover:text-[#121212] text-2xl mb-2">
+                <i className="fas fa-envelope"></i>
+              </div>
+              <span className="font-code text-sm">dipeshbansal777@gmail.com</span>
             </motion.a>
             <motion.div
               className="neo-border rounded-full h-32 flex flex-col items-center justify-center mb-6 hover:bg-primary hover:text-[#121212] transition duration-300 group"
