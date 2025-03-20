@@ -8,6 +8,10 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
+import emailjs from '@emailjs/browser';
+
+// Initialize EmailJS
+emailjs.init('YS4MCXpCF8DeFWY6I');
 
 const formSchema = z.object({
   name: z.string().min(2, { message: "Name must be at least 2 characters" }),
@@ -30,20 +34,38 @@ export default function Contact() {
     }
   });
 
-  function onSubmit(data: FormValues) {
+  async function onSubmit(data: FormValues) {
     setIsSubmitting(true);
     
-    // Simulate form submission
-    setTimeout(() => {
-      console.log("Form submitted:", data);
+    try {
+      await emailjs.send(
+        'service_7n8a7ff',
+        'template_u6dvc08',
+        {
+          from_name: data.name,
+          from_email: data.email,
+          message: data.message,
+        },
+        'YS4MCXpCF8DeFWY6I'
+      );
+
       toast({
         title: "Message sent!",
         description: "Thank you for reaching out. I'll get back to you soon.",
         duration: 5000
       });
       form.reset();
+    } catch (error) {
+      console.error('Error sending email:', error);
+      toast({
+        title: "Error",
+        description: "Failed to send message. Please try again later.",
+        variant: "destructive",
+        duration: 5000
+      });
+    } finally {
       setIsSubmitting(false);
-    }, 1000);
+    }
   }
 
   return (
@@ -147,8 +169,10 @@ export default function Contact() {
             <div className="grid grid-cols-2 gap-6">
               {SOCIAL_LINKS.map((social, index) => (
                 <motion.a 
-                  key={social.id}
-                  href={social.link} 
+                  key={social.name}
+                  href={social.url} 
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="neo-border rounded-full h-32 flex flex-col items-center justify-center hover:bg-primary hover:text-[#121212] transition duration-300 group"
                   whileHover={{ scale: 1.05 }}
                   initial={{ opacity: 0, y: 20 }}
@@ -157,7 +181,7 @@ export default function Contact() {
                   transition={{ duration: 0.5, delay: 0.3 + (index * 0.1) }}
                 >
                   <div className="text-primary group-hover:text-[#121212] text-2xl mb-2">
-                    <i className={social.icon}></i>
+                    <i className={`fab fa-${social.icon}`}></i>
                   </div>
                   <span className="font-code text-sm">{social.name}</span>
                 </motion.a>
