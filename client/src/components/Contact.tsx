@@ -23,32 +23,23 @@ export default function Contact() {
   const { toast } = useToast();
   
   useEffect(() => {
-    // Initialize EmailJS
-    const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
-    if (!publicKey) {
-      console.error('EmailJS public key is not configured');
-      return;
+    try {
+      // Initialize EmailJS
+      emailjs.init({
+        publicKey: "YS4MCXpCF8DeFWY6I", // Hardcoding for immediate testing
+        limitRate: {
+          throttle: 5000, // 5 seconds
+        },
+      });
+    } catch (error) {
+      console.error('Failed to initialize EmailJS:', error);
     }
-    
-    emailjs.init({
-      publicKey,
-      limitRate: {
-        throttle: 5000, // 5 seconds
-      },
-    });
   }, []);
 
   const onSubmit = async (data: FormValues) => {
     setIsSubmitting(true);
     
     try {
-      const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
-      const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
-      
-      if (!serviceId || !templateId) {
-        throw new Error('EmailJS configuration is incomplete');
-      }
-
       const templateParams = {
         to_name: "Dipesh",
         from_name: data.name,
@@ -60,8 +51,8 @@ export default function Contact() {
       };
 
       const result = await emailjs.send(
-        serviceId,
-        templateId,
+        "service_7n8a7ff", // Hardcoding for immediate testing
+        "template_u6dvc08", // Hardcoding for immediate testing
         templateParams
       );
 
