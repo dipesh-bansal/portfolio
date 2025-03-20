@@ -1,19 +1,48 @@
 import { motion } from "framer-motion";
 import { SOCIAL_LINKS } from "@/lib/constants";
+import { useState } from "react";
 
 export default function Contact() {
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const [status, setStatus] = useState<{
+    type: 'success' | 'error' | null;
+    message: string;
+  }>({ type: null, message: '' });
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setStatus({ type: null, message: '' });
+
     const formData = new FormData(e.currentTarget);
     const data = {
       name: formData.get('name'),
       email: formData.get('email'),
       message: formData.get('message')
     };
-    
-    // Open email client with pre-filled data
-    const mailtoLink = `mailto:dipeshbansal777@gmail.com?subject=Contact from ${data.name}&body=${encodeURIComponent(`Name: ${data.name}\nEmail: ${data.email}\n\nMessage:\n${data.message}`)}`;
-    window.location.href = mailtoLink;
+
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to send message');
+      }
+
+      setStatus({
+        type: 'success',
+        message: 'Message sent successfully! I will get back to you soon.'
+      });
+      e.currentTarget.reset();
+    } catch (error) {
+      setStatus({
+        type: 'error',
+        message: 'Failed to send message. Please try again later.'
+      });
+    }
   };
 
   return (
@@ -76,6 +105,14 @@ export default function Contact() {
                     className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                   />
                 </div>
+
+                {status.type && (
+                  <div className={`p-4 rounded-md ${
+                    status.type === 'success' ? 'bg-green-50 text-green-700' : 'bg-red-50 text-red-700'
+                  }`}>
+                    {status.message}
+                  </div>
+                )}
                 
                 <button
                   type="submit"
