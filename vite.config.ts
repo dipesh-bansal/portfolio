@@ -10,9 +10,11 @@ export default defineConfig({
     },
   },
   root: "client",
+  publicDir: path.resolve(__dirname, "public"),
   build: {
-    outDir: "../dist",
+    outDir: path.resolve(__dirname, "dist"),
     emptyOutDir: true,
+    assetsDir: "assets",
     sourcemap: true,
     rollupOptions: {
       output: {
