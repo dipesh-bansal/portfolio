@@ -10,8 +10,13 @@ import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
 import emailjs from '@emailjs/browser';
 
-// Initialize EmailJS
-emailjs.init('YS4MCXpCF8DeFWY6I');
+// Initialize EmailJS with your public key
+emailjs.init({
+  publicKey: 'YS4MCXpCF8DeFWY6I',
+  limitRate: {
+    throttle: 5000, // 5 seconds
+  },
+});
 
 const formSchema = z.object({
   name: z.string().min(2, { message: "Name must be at least 2 characters" }),
@@ -34,20 +39,24 @@ export default function Contact() {
     }
   });
 
-  async function onSubmit(data: FormValues) {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
     setIsSubmitting(true);
     
     try {
-      await emailjs.send(
+      const formData = form.getValues();
+      const result = await emailjs.send(
         'service_7n8a7ff',
         'template_u6dvc08',
         {
-          from_name: data.name,
-          from_email: data.email,
-          message: data.message,
+          from_name: formData.name,
+          from_email: formData.email,
+          message: formData.message,
         },
         'YS4MCXpCF8DeFWY6I'
       );
+
+      console.log('Email sent successfully:', result);
 
       toast({
         title: "Message sent!",
@@ -59,14 +68,14 @@ export default function Contact() {
       console.error('Error sending email:', error);
       toast({
         title: "Error",
-        description: "Failed to send message. Please try again later.",
+        description: error instanceof Error ? error.message : "Failed to send message. Please try again later.",
         variant: "destructive",
         duration: 5000
       });
     } finally {
       setIsSubmitting(false);
     }
-  }
+  };
 
   return (
     <section id="contact" className="py-20 bg-[#121212]">
@@ -92,7 +101,7 @@ export default function Contact() {
             transition={{ duration: 0.5 }}
           >
             <Form {...form}>
-              <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+              <form onSubmit={handleSubmit} className="space-y-6">
                 <FormField
                   control={form.control}
                   name="name"
