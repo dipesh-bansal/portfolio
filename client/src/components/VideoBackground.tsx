@@ -1,46 +1,43 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 
 interface VideoBackgroundProps {
-  videoSrc: string;
+  videoSrc?: string;
   overlayOpacity?: number;
 }
 
-export default function VideoBackground({ 
-  videoSrc, 
-  overlayOpacity = 0.7 
-}: VideoBackgroundProps) {
+export default function VideoBackground({ videoSrc, overlayOpacity = 0.75 }: VideoBackgroundProps) {
+  const [videoError, setVideoError] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
     if (videoRef.current) {
-      videoRef.current.playbackRate = 0.7; // Slow down the video slightly
+      videoRef.current.playbackRate = 0.75;
     }
   }, []);
 
   return (
     <div className="absolute inset-0 w-full h-full overflow-hidden">
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1.5 }}
-        className="relative w-full h-full"
-      >
-        <video 
+      {!videoError && videoSrc && (
+        <video
           ref={videoRef}
-          autoPlay 
-          muted 
-          loop 
+          autoPlay
+          loop
+          muted
           playsInline
-          className="absolute inset-0 object-cover w-full h-full grayscale-[0.2] brightness-[0.6]"
+          className="absolute w-full h-full object-cover"
+          onError={() => setVideoError(true)}
         >
           <source src={videoSrc} type="video/mp4" />
-          Your browser does not support the video tag.
         </video>
-        <div 
-          className={`absolute inset-0 bg-[#121212] opacity-[${overlayOpacity}]`}
-        />
-      </motion.div>
+      )}
+      <div 
+        className="absolute inset-0 bg-gradient-to-b from-[#121212] via-[#121212] to-[#121212]"
+        style={{ 
+          opacity: videoError ? 1 : overlayOpacity,
+          backgroundImage: videoError ? 'radial-gradient(circle at center, #4F46E5 0%, #121212 100%)' : undefined
+        }}
+      />
     </div>
   );
 }

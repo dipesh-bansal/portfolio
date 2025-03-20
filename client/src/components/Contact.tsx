@@ -45,14 +45,18 @@ export default function Contact() {
     
     try {
       const formData = form.getValues();
+      const templateParams = {
+        to_name: "Dipesh",
+        from_name: formData.name,
+        from_email: formData.email,
+        message: formData.message,
+        reply_to: formData.email
+      };
+
       const result = await emailjs.send(
-        "service_7n8a7ff",
-        "template_u6dvc08",
-        {
-          from_name: formData.name,
-          from_email: formData.email,
-          message: formData.message,
-        },
+        'service_7n8a7ff',
+        'template_u6dvc08',
+        templateParams,
         'YS4MCXpCF8DeFWY6I'
       );
 

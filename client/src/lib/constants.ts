@@ -12,7 +12,7 @@ export const PROJECTS = [
     title: "Netflix Clone",
     description: "A full-stack Netflix clone with user authentication, movie browsing, and streaming capabilities. Built with React, Firebase, and The Movie Database API.",
     role: "FULL-STACK DEVELOPER",
-    imageUrl: "/assets/projects/netflix-clone.jpg",
+    imageUrl: "https://images.unsplash.com/photo-1574375927938-d5a98e8ffe85?auto=format&fit=crop&w=800&q=80",
     link: "#"
   },
   {
@@ -20,7 +20,7 @@ export const PROJECTS = [
     title: "Library Management System",
     description: "A comprehensive library management solution for tracking books, managing borrowers, and handling reservations. Built with Java and MySQL database.",
     role: "BACKEND DEVELOPER",
-    imageUrl: "/assets/projects/library-management.png",
+    imageUrl: "https://images.unsplash.com/photo-1507842217343-583bb7270b66?auto=format&fit=crop&w=800&q=80",
     link: "#"
   },
   {
