@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { SOCIAL_LINKS } from "@/lib/constants";
 import { z } from "zod";
@@ -21,20 +21,15 @@ type FormValues = z.infer<typeof formSchema>;
 export default function Contact() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
-  
-  useEffect(() => {
-    try {
-      // Initialize EmailJS
-      emailjs.init({
-        publicKey: "YS4MCXpCF8DeFWY6I", // Hardcoding for immediate testing
-        limitRate: {
-          throttle: 5000, // 5 seconds
-        },
-      });
-    } catch (error) {
-      console.error('Failed to initialize EmailJS:', error);
+
+  const form = useForm<FormValues>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      name: "",
+      email: "",
+      message: ""
     }
-  }, []);
+  });
 
   const onSubmit = async (data: FormValues) => {
     setIsSubmitting(true);
@@ -51,8 +46,8 @@ export default function Contact() {
       };
 
       const result = await emailjs.send(
-        "service_7n8a7ff", // Hardcoding for immediate testing
-        "template_u6dvc08", // Hardcoding for immediate testing
+        "service_7n8a7ff",
+        "template_u6dvc08",
         templateParams
       );
 
@@ -78,15 +73,6 @@ export default function Contact() {
       setIsSubmitting(false);
     }
   };
-
-  const form = useForm<FormValues>({
-    resolver: zodResolver(formSchema),
-    defaultValues: {
-      name: "",
-      email: "",
-      message: ""
-    }
-  });
 
   return (
     <section id="contact" className="py-20 bg-[#121212]">
@@ -180,42 +166,61 @@ export default function Contact() {
           </motion.div>
           
           <motion.div
+            className="flex flex-col justify-center"
             initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="space-y-8"
+            transition={{ duration: 0.5, delay: 0.2 }}
           >
-            <div>
-              <h3 className="text-xl font-space font-bold text-white mb-4">Contact Information</h3>
-              <div className="space-y-4">
-                <a href="mailto:dipeshbansal533@gmail.com" className="flex items-center space-x-3 text-gray-400 hover:text-primary transition">
-                  <i className="fas fa-envelope"></i>
-                  <span className="font-code">dipeshbansal533@gmail.com</span>
-                </a>
-                <a href="tel:+919027372927" className="flex items-center space-x-3 text-gray-400 hover:text-primary transition">
-                  <i className="fas fa-phone"></i>
-                  <span className="font-code">+91 9027372927</span>
-                </a>
+            <motion.a
+              href="mailto:dipeshbansal533@gmail.com"
+              className="neo-border rounded-full h-32 flex flex-col items-center justify-center mb-6 hover:bg-primary hover:text-[#121212] transition duration-300 group"
+              whileHover={{ scale: 1.05 }}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+            >
+              <div className="text-primary group-hover:text-[#121212] text-2xl mb-2">
+                <i className="fas fa-envelope"></i>
               </div>
-            </div>
+              <span className="font-code text-sm">dipeshbansal533@gmail.com</span>
+            </motion.a>
             
-            <div>
-              <h3 className="text-xl font-space font-bold text-white mb-4">Social Links</h3>
-              <div className="flex space-x-4">
-                {SOCIAL_LINKS.map((link) => (
-                  <a
-                    key={link.name}
-                    href={link.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-10 h-10 rounded-full flex items-center justify-center neo-border text-primary hover:bg-primary hover:text-[#121212] transition duration-300"
-                    title={link.name}
-                  >
-                    <i className={link.icon}></i>
-                  </a>
-                ))}
+            <motion.div
+              className="neo-border rounded-full h-32 flex flex-col items-center justify-center mb-6 hover:bg-primary hover:text-[#121212] transition duration-300 group"
+              whileHover={{ scale: 1.05 }}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+            >
+              <div className="text-primary group-hover:text-[#121212] text-2xl mb-2">
+                <i className="fas fa-phone"></i>
               </div>
+              <span className="font-code text-sm">+91 9027372927</span>
+            </motion.div>
+            
+            <div className="grid grid-cols-2 gap-6">
+              {SOCIAL_LINKS.map((social, index) => (
+                <motion.a 
+                  key={social.name}
+                  href={social.url} 
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="neo-border rounded-full h-32 flex flex-col items-center justify-center hover:bg-primary hover:text-[#121212] transition duration-300 group"
+                  whileHover={{ scale: 1.05 }}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: 0.3 + (index * 0.1) }}
+                >
+                  <div className="text-primary group-hover:text-[#121212] text-2xl mb-2">
+                    <i className={social.icon}></i>
+                  </div>
+                  <span className="font-code text-sm">{social.name}</span>
+                </motion.a>
+              ))}
             </div>
           </motion.div>
         </div>
