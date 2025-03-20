@@ -136,10 +136,5 @@ export const SOCIAL_LINKS = [
     name: "LinkedIn",
     url: "https://www.linkedin.com/in/dipesh-bansal-678798265/",
     icon: "linkedin"
-  },
-  {
-    name: "Twitter",
-    url: "https://twitter.com/dipeshbansal",
-    icon: "twitter"
   }
 ];
